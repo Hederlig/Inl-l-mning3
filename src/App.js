@@ -1,13 +1,11 @@
 import "./styles.css";
 import Home from "./pages/Home";
 import Details from "./pages/Details";
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch} from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function App() {
-
-  const history = useHistory();
-  const [postList, setPostList] = useState([]);
+ const [postList, setPostList] = useState([]);
 
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/posts`)
@@ -17,18 +15,15 @@ function App() {
 
   return (
     <div className="App">
-     
       <Switch>
         <Route
           exact
           path="/"
           render={(props) => <Home {...props} postList={postList} />}
         />
+         
         <Route path="/post/:id" render={(props) => <Details {...props} />} />
       </Switch>
-      <button onClick={history.goBack} className="Button">
-        Go back
-      </button>
     </div>
   );
 }
